@@ -65,4 +65,5 @@ public class QuestionnaireContoller {
 		List<Questionnaire> list=(List<Questionnaire>) questionnaireRepository.findAll();
 		return new ResponseEntity<List<Questionnaire>>(list, HttpStatus.OK);
 	}
+	
 }
