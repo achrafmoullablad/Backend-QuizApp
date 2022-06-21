@@ -1,9 +1,11 @@
 package ma.projet.pfa.controller;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import ma.projet.pfa.models.auth.EmailService;
 public class EmailController {
 	 @Autowired
 	 private EmailService emailService;
+	 
 	 @PostMapping(value = "/sendemail")
 	 public ResponseEntity<EmailRequest> enviarEmail(@RequestBody EmailRequest email){
 	    try {
@@ -25,5 +28,10 @@ public class EmailController {
 	    } catch( MailException e){
 	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
+	 }
+	 @GetMapping("getallmailsender")
+	 public ResponseEntity<List<EmailRequest>> getallmailsender() {
+		List<EmailRequest> mails =emailService.getAllEmail();
+		return new ResponseEntity<List<EmailRequest>>(mails, HttpStatus.OK);
 	 }
 }

@@ -1,15 +1,23 @@
 package ma.projet.pfa.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class EmailRequest {
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-    private  String to;
-	private String from;
+    private  String touser;
+	private String fromuser;
     private String subject;
     private String message;
+    private int score;
 	public EmailRequest() {}
-	public EmailRequest(String to,String from, String subject, String message) {
-		this.to = to;
-		this.from = from;
+	public EmailRequest(String touser, String fromuser, String subject, String message) {
+		this.touser = touser;
+		this.fromuser = fromuser;
 		this.subject = subject;
 		this.message = message;
 	}
@@ -19,17 +27,17 @@ public class EmailRequest {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getTo() {
-		return to;
+	public String getTouser() {
+		return touser;
 	}
-	public void setTo(String to) {
-		this.to = to;
+	public void setTouser(String touser) {
+		this.touser = touser;
 	}
-	public String getFrom() {
-		return from;
+	public String getFromuser() {
+		return fromuser;
 	}
-	public void setFrom(String from) {
-		this.from = from;
+	public void setFromuser(String fromuser) {
+		this.fromuser = fromuser;
 	}
 	public String getSubject() {
 		return subject;
@@ -43,9 +51,15 @@ public class EmailRequest {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
 	@Override
 	public String toString() {
-		return "EmailRequest [id=" + id + ", to=" + to + ", from=" + from + ", subject=" + subject + ", message="
-				+ message + "]";
+		return "EmailRequest [id=" + id + ", touser=" + touser + ", fromuser=" + fromuser + ", subject=" + subject
+				+ ", message=" + message + ", score=" + score + "]";
 	}
 }
